@@ -1,0 +1,75 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#000000"
+  type="ball-atom"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+<div class="login-container">
+  <div id="page3" style="align-items: center; justify-content: center">
+    <h2 style="margin-left: 550px; margin-bottom: 350px">
+      A single drop of your
+      <b style="color: red; font-family: algerian">Blood 🩸</b> could be a drop
+      of
+      <b style="color: green; font-family: Lucida Calligraphy">Life 🧬</b> for
+      someone else.<br />
+      Maintain a healthy lifestyle and donate blood. <br />The gift of blood is
+      the gift of life. Be a hero, donate blood,<br />
+      and give someone a chance to live.
+    </h2>
+    <img
+      id="colon1"
+      src="https://eiwgew27fhz.exactdn.com/wp-content/themes/puttosaurus/img/quote-left.svg"
+      alt=""
+    />
+    <img
+      id="colon2"
+      src="https://eiwgew27fhz.exactdn.com/wp-content/themes/puttosaurus/img/quote-right.svg"
+      alt=""
+    />
+  </div>
+</div>
+<div class="login">
+  <button style="width: 100px" (click)="loginModel(donor)">
+    <b>Login</b>
+  </button>
+</div>
+
+<ng-template #donor>
+  <div class="formArea">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <h2 style="justify-content: center; align-items: center">
+          Donor Login
+        </h2>
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" />
+        <div
+          *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+          class="error"
+        >
+          <div *ngIf="email?.errors?.['required']">Email is required.</div>
+          <div *ngIf="email?.errors?.['email']">Invalid email format.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" />
+        <div
+          *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+          class="error"
+        >
+          <div *ngIf="password?.errors?.['required']">
+            Password is required.
+          </div>
+          <div *ngIf="password?.errors?.['minlength']">
+            Password must be at least 6 characters long.
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </div>
+</ng-template>
